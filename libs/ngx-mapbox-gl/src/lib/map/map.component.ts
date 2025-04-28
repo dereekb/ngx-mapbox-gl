@@ -32,6 +32,7 @@ import type {
 } from 'mapbox-gl';
 
 @Component({
+  standalone: true,
   selector: 'mgl-map',
   template: '<div #container></div>',
   styles: [
@@ -46,7 +47,6 @@ import type {
     `,
   ],
   providers: [MapService],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent implements OnChanges, OnDestroy {

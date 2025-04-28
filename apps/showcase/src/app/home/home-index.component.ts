@@ -4,6 +4,7 @@ import { AnimationOptions } from 'mapbox-gl';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
+  standalone: true,
   template: `
     <mgl-map
       [style]="'mapbox://styles/mapbox/streets-v12'"

@@ -21,6 +21,7 @@ import { MapService } from '../map/map.service';
 // };
 
 @Component({
+  standalone: true,
   selector: 'mgl-raster-dem-source',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,

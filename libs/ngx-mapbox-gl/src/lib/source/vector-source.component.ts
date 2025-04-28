@@ -14,6 +14,7 @@ import { filter } from 'rxjs/operators';
 import { MapService } from '../map/map.service';
 
 @Component({
+  standalone: true,
   selector: 'mgl-vector-source',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,

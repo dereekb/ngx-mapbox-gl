@@ -5,6 +5,7 @@ import { MglMapResizeDirective } from './mgl-map-resize.directive';
 import { MapComponent, LayerComponent, PopupComponent } from 'ngx-mapbox-gl';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

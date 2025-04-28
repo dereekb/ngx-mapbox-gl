@@ -18,8 +18,8 @@ import type { LngLatLike, Marker, MarkerOptions } from 'mapbox-gl';
 import { MapService } from '../map/map.service';
 
 @Component({
+  standalone: true,
   selector: 'mgl-marker',
-
   template: `
     <div [class]="className()" [style.z-index]="zIndex()" #content>
       <ng-content />

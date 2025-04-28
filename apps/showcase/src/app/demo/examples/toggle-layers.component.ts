@@ -9,6 +9,7 @@ import {
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

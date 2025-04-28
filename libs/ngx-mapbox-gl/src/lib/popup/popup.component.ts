@@ -18,6 +18,7 @@ import { MapService } from '../map/map.service';
 import { MarkerComponent } from '../marker/marker.component';
 
 @Component({
+  standalone: true,
   selector: 'mgl-popup',
   template: '<div #content><ng-content/></div>',
   changeDetection: ChangeDetectionStrategy.OnPush,

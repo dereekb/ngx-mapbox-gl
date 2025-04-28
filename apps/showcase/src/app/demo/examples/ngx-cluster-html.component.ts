@@ -4,7 +4,6 @@ import {
   computed,
   effect,
   input,
-  resource,
   signal,
 } from '@angular/core';
 import {
@@ -31,19 +30,12 @@ import { MglMapResizeDirective } from './mgl-map-resize.directive';
  */
 
 @Component({
+  standalone: true,
   selector: 'showcase-cluster-popup',
   template: `
     <mat-list>
-      @if (leaves.hasValue()) {
-        @for (leaf of leaves.value(); track $index) {
-          <mat-list-item>
-            {{ leaf.properties?.['Primary ID'] }}
-          </mat-list-item>
-        }
-      } @else {
-        @for (i of placeholders(); track $index) {
-          <mat-list-item />
-        }
+      @for (i of placeholders(); track $index) {
+        <mat-list-item />
       }
     </mat-list>
     <mat-paginator
@@ -65,22 +57,10 @@ export class ClusterPopupComponent {
   pointCount = computed(
     () => this.selectedCluster().properties?.['point_count'] ?? 0,
   );
+
   placeholders = computed(() =>
     Array.from({ length: Math.min(this.pointCount(), 5) }),
   );
-
-  leaves = resource({
-    request: () => ({
-      offset: this.offset(),
-      selectedCluster: this.selectedCluster(),
-    }),
-    loader: () =>
-      this.clusterComponent().getClusterLeaves(
-        this.selectedCluster().properties?.['cluster_id'] ?? 0,
-        5,
-        this.offset(),
-      ),
-  });
 
   constructor() {
     effect(() => {
@@ -95,6 +75,7 @@ export class ClusterPopupComponent {
 }
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

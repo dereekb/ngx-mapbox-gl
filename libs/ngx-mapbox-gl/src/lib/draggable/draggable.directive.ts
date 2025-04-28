@@ -16,6 +16,7 @@ import { MapService } from '../map/map.service';
 import { FeatureComponent } from '../source/geojson/feature.component';
 
 @Directive({
+  standalone: true,
   selector: '[mglDraggable]',
 })
 export class DraggableDirective implements OnInit, OnDestroy {
@@ -26,7 +27,9 @@ export class DraggableDirective implements OnInit, OnDestroy {
     host: true,
   });
 
-  layer = input<LayerComponent>(undefined, { alias: 'mglDraggable' });
+  layer = input<LayerComponent | undefined>(undefined, {
+    alias: 'mglDraggable',
+  });
 
   @Output() featureDragStart = new EventEmitter<MapMouseEvent>();
   @Output() featureDragEnd = new EventEmitter<MapMouseEvent>();
@@ -39,6 +42,7 @@ export class DraggableDirective implements OnInit, OnDestroy {
     let leave$;
     let updateCoords;
     const layer = this.layer();
+
     if (this.featureComponent && layer) {
       enter$ = layer.layerMouseEnter;
       leave$ = layer.layerMouseLeave;

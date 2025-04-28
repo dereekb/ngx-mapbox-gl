@@ -25,6 +25,7 @@ import { LayerEvents } from '../map/map.types';
 type AnyLayerSource = LayerSpecification['source'] | SourceSpecification;
 
 @Component({
+  standalone: true,
   selector: 'mgl-layer',
   template: '',
 })

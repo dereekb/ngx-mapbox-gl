@@ -5,6 +5,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MglMapResizeDirective } from './mgl-map-resize.directive';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map [style]="style()" [zoom]="[13]" [center]="[-2.81361, 36.77271]" />

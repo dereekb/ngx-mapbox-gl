@@ -28,6 +28,7 @@ export class CustomControl implements IControl {
 }
 
 @Component({
+  standalone: true,
   selector: 'mgl-control',
   template: `
     <div class="mapboxgl-ctrl" #content>

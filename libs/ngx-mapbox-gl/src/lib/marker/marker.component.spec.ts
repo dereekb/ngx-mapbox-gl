@@ -6,6 +6,7 @@ import { MapService } from '../map/map.service';
 import { MarkerComponent } from './marker.component';
 
 @Component({
+  standalone: true,
   template: `
     <mgl-marker [offset]="offset" [lngLat]="lngLat" [className]="className">
       ...

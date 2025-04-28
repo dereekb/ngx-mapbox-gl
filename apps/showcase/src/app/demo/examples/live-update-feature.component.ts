@@ -11,6 +11,7 @@ import { signal, effect } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

@@ -5,6 +5,7 @@ import { MapComponent, MarkerComponent, ControlComponent } from 'ngx-mapbox-gl';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

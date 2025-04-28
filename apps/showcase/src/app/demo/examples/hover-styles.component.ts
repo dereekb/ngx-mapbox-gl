@@ -8,6 +8,7 @@ import {
 import type { Map, MapMouseEvent } from 'mapbox-gl';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

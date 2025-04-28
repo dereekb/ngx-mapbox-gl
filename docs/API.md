@@ -5,6 +5,7 @@
 ```typescript
 ...
 @Component({
+standalone: true,
   template: `
   <mgl-map
     [style]="'mapbox://styles/mapbox/streets-v12'"

@@ -4,6 +4,7 @@ import { MapService } from '../map/map.service';
 import { ControlComponent } from './control.component';
 
 @Directive({
+  standalone: true,
   selector: '[mglAttribution]',
 })
 export class AttributionControlDirective implements AfterContentInit {

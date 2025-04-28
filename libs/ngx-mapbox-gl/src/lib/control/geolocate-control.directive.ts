@@ -11,6 +11,7 @@ import { MapService } from '../map/map.service';
 import { ControlComponent } from './control.component';
 
 @Directive({
+  standalone: true,
   selector: '[mglGeolocate]',
 })
 export class GeolocateControlDirective implements AfterContentInit {

@@ -20,6 +20,7 @@ type ImageSourceInputs = {
 };
 
 @Component({
+  standalone: true,
   selector: 'mgl-image-source',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -6,6 +6,7 @@ import {
 } from 'ngx-mapbox-gl';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

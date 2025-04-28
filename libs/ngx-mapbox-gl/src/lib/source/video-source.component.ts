@@ -21,6 +21,7 @@ type VideoSourceInputs = {
 };
 
 @Component({
+  standalone: true,
   selector: 'mgl-video-source',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,

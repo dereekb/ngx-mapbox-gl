@@ -25,6 +25,7 @@ import {
 const COLORS = ['#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c'];
 
 @Component({
+  standalone: true,
   selector: 'showcase-cluster-point',
   template: `
     <svg
@@ -120,6 +121,7 @@ export class ClusterPointComponent implements OnInit {
 }
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

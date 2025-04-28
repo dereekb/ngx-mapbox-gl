@@ -20,6 +20,7 @@ export const MapResizeSignal = new InjectionToken<WritableSignal<void>>(
 );
 
 @Directive({
+  standalone: true,
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'mgl-map',
 })

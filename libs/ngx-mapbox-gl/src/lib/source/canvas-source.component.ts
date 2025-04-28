@@ -22,6 +22,7 @@ type CanvasSourceInputs = {
 };
 
 @Component({
+  standalone: true,
   selector: 'mgl-canvas-source',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,

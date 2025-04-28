@@ -23,6 +23,7 @@ type GeoJSONSourceInputs = {
 };
 
 @Component({
+  standalone: true,
   selector: 'mgl-geojson-source',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,

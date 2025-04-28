@@ -19,6 +19,7 @@ import { DemoFileLoaderService } from './demo-file-loader.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
+  standalone: true,
   template: `
     <div #container></div>
     @if (loading) {

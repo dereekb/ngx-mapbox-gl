@@ -3,6 +3,7 @@ import { MapComponent, LayerComponent, ImageComponent } from 'ngx-mapbox-gl';
 import { MglMapResizeDirective } from './mgl-map-resize.directive';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

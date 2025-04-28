@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MglMapResizeDirective } from './mgl-map-resize.directive';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map [style]="'mapbox://styles/mapbox/streets-v12'">

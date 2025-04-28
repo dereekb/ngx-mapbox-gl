@@ -16,6 +16,7 @@ import { MapService } from '../map/map.service';
 import type { Map } from 'mapbox-gl';
 
 @Component({
+  standalone: true,
   selector: 'mgl-image',
   template: '',
 })

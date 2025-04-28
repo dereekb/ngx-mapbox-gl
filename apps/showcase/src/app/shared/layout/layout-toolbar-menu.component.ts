@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'showcase-layout-toolbar-menu',
   template: `
     <ng-template #tpl>

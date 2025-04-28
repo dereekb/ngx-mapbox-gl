@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MapComponent } from 'ngx-mapbox-gl';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map

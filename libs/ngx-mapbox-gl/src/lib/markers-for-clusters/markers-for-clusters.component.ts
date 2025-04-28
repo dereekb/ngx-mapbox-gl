@@ -24,11 +24,13 @@ import { LayerComponent } from '../layer/layer.component';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Directive({
+  standalone: true,
   selector: 'ng-template[mglPoint]',
 })
 export class PointDirective {}
 
 @Directive({
+  standalone: true,
   selector: 'ng-template[mglClusterPoint]',
 })
 export class ClusterPointDirective {}
@@ -36,8 +38,8 @@ export class ClusterPointDirective {}
 let uniqId = 0;
 
 @Component({
+  standalone: true,
   selector: 'mgl-markers-for-clusters',
-
   template: `
     <mgl-layer
       [id]="layerId"

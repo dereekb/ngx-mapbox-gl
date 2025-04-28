@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
+  standalone: true,
   template: `
     <mat-toolbar color="primary">
       <div>

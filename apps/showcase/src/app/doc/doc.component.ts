@@ -16,7 +16,6 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import type { Tokens } from 'marked';
-import { httpResource } from '@angular/common/http';
 
 export function markedOptionsFactory(): MarkedOptions {
   const renderer = new MarkedRenderer();
@@ -42,6 +41,7 @@ export function markedOptionsFactory(): MarkedOptions {
 }
 
 @Component({
+  standalone: true,
   template: `
     <showcase-layout-toolbar-menu position="right">
       <mat-form-field subscriptSizing="dynamic">
@@ -102,29 +102,14 @@ export function markedOptionsFactory(): MarkedOptions {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocComponent {
-  private tagsResource = httpResource<{ name: string }[]>(
-    'https://api.github.com/repos/Wykks/ngx-mapbox-gl/tags',
-  );
+  private tagsResource = signal<{ name: string }[]>([
+    {
+      name: 'v12.0.0',
+    },
+  ]);
 
   versions = computed(() => {
-    const value = this.tagsResource.value();
-    if (this.tagsResource.isLoading() || this.tagsResource.error() || !value) {
-      return ['main'];
-    }
-
-    const filteredTags = value
-      .map((tag) => tag.name)
-      .filter((tagName) => {
-        if (!tagName.startsWith('v')) return false;
-
-        const versionMatch = tagName.match(/^v(\d+)\./);
-        if (!versionMatch) return false;
-
-        const majorVersion = parseInt(versionMatch[1], 10);
-        return !isNaN(majorVersion) && majorVersion >= 5;
-      });
-
-    return ['main', ...filteredTags];
+    return ['main', ...this.tagsResource().map((x) => x.name)];
   });
 
   currentVersion = signal('main');

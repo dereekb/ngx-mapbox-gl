@@ -24,6 +24,7 @@ import { MapResizeSignal } from './examples/mgl-map-resize.directive';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
+  standalone: true,
   templateUrl: './demo-index.component.html',
   styleUrls: ['./demo-index.component.scss'],
   imports: [

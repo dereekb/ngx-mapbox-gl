@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'showcase-root',
   template: `<router-outlet />`,
   imports: [RouterOutlet],

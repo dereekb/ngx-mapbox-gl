@@ -5,6 +5,7 @@ import { MapComponent, ControlComponent } from 'ngx-mapbox-gl';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
+  standalone: true,
   selector: 'showcase-demo',
   template: `
     <mgl-map
