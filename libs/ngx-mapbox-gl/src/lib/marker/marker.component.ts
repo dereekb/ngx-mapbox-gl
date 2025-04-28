@@ -13,6 +13,7 @@ import {
   ViewEncapsulation,
   inject,
   input,
+  viewChild,
 } from '@angular/core';
 import type { LngLatLike, Marker, MarkerOptions } from 'mapbox-gl';
 import { MapService } from '../map/map.service';
@@ -29,8 +30,7 @@ import { MapService } from '../map/map.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MarkerComponent
-  implements OnChanges, OnDestroy, AfterViewInit, OnInit
-{
+  implements OnChanges, OnDestroy, AfterViewInit, OnInit {
   private mapService = inject(MapService);
 
   /* Init input */
@@ -52,7 +52,7 @@ export class MarkerComponent
   @Output() markerDragEnd = new EventEmitter<Marker>();
   @Output() markerDrag = new EventEmitter<Marker>();
 
-  @ViewChild('content', { static: true }) content: ElementRef;
+  readonly content = viewChild<string, ElementRef>('content', { read: ElementRef });
 
   markerInstance?: Marker;
 
@@ -106,7 +106,7 @@ export class MarkerComponent
           pitchAlignment: this.pitchAlignment(),
           rotationAlignment: this.rotationAlignment(),
           draggable: this.draggable(),
-          element: this.content.nativeElement,
+          element: this.content()?.nativeElement,
           feature: this.feature(),
           lngLat: this.lngLat(),
           clickTolerance: this.clickTolerance(),
