@@ -11,6 +11,7 @@ import {
   ViewChild,
   inject,
   input,
+  InjectionToken,
 } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { MapService, MovingOptions } from './map.service';
@@ -31,6 +32,18 @@ import type {
   PointLike,
 } from 'mapbox-gl';
 
+/**
+ * Default options for the MapComponent.
+ * 
+ * @see MAP_COMPONENT_INITIALIZATION_OPTIONS
+ */
+export interface MapComponentInitializationOptions extends MapOptions { }
+
+/**
+ * InjectionToken used for injecting default options to the MapComponent before it initializes.
+ */
+export const MAP_COMPONENT_INITIALIZATION_OPTIONS = new InjectionToken<MapComponentInitializationOptions>('MapComponentInitializationOptions');
+
 @Component({
   standalone: true,
   selector: 'mgl-map',
@@ -50,56 +63,58 @@ import type {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent implements OnChanges, OnDestroy {
-  private mapService = inject(MapService);
+
+  private readonly mapService = inject(MapService);
+  private readonly initialMapOptions = inject(MAP_COMPONENT_INITIALIZATION_OPTIONS, { optional: true });
 
   /* Init inputs */
-  accessToken = input<MapOptions['accessToken']>();
-  collectResourceTiming = input<MapOptions['collectResourceTiming']>();
-  crossSourceCollisions = input<MapOptions['crossSourceCollisions']>();
-  fadeDuration = input<MapOptions['fadeDuration']>();
-  hash = input<MapOptions['hash']>();
-  refreshExpiredTiles = input<MapOptions['refreshExpiredTiles']>();
+  accessToken = input<MapOptions['accessToken']>(this.initialMapOptions?.accessToken);
+  collectResourceTiming = input<MapOptions['collectResourceTiming']>(this.initialMapOptions?.collectResourceTiming);
+  crossSourceCollisions = input<MapOptions['crossSourceCollisions']>(this.initialMapOptions?.crossSourceCollisions);
+  fadeDuration = input<MapOptions['fadeDuration']>(this.initialMapOptions?.fadeDuration);
+  hash = input<MapOptions['hash']>(this.initialMapOptions?.hash);
+  refreshExpiredTiles = input<MapOptions['refreshExpiredTiles']>(this.initialMapOptions?.refreshExpiredTiles);
   failIfMajorPerformanceCaveat =
-    input<MapOptions['failIfMajorPerformanceCaveat']>();
-  bearingSnap = input<MapOptions['bearingSnap']>();
-  interactive = input<MapOptions['interactive']>();
-  pitchWithRotate = input<MapOptions['pitchWithRotate']>();
-  clickTolerance = input<MapOptions['clickTolerance']>();
-  attributionControl = input<MapOptions['attributionControl']>();
-  logoPosition = input<MapOptions['logoPosition']>();
-  maxTileCacheSize = input<MapOptions['maxTileCacheSize']>();
-  localIdeographFontFamily = input<MapOptions['localIdeographFontFamily']>();
-  preserveDrawingBuffer = input<MapOptions['preserveDrawingBuffer']>();
-  trackResize = input<MapOptions['trackResize']>();
-  transformRequest = input<MapOptions['transformRequest']>();
-  bounds = input<MapOptions['bounds']>(); // Use fitBounds for dynamic input
-  antialias = input<MapOptions['antialias']>();
-  locale = input<MapOptions['locale']>();
-  cooperativeGestures = input<MapOptions['cooperativeGestures']>();
+    input<MapOptions['failIfMajorPerformanceCaveat']>(this.initialMapOptions?.failIfMajorPerformanceCaveat);
+  bearingSnap = input<MapOptions['bearingSnap']>(this.initialMapOptions?.bearingSnap);
+  interactive = input<MapOptions['interactive']>(this.initialMapOptions?.interactive);
+  pitchWithRotate = input<MapOptions['pitchWithRotate']>(this.initialMapOptions?.pitchWithRotate);
+  clickTolerance = input<MapOptions['clickTolerance']>(this.initialMapOptions?.clickTolerance);
+  attributionControl = input<MapOptions['attributionControl']>(this.initialMapOptions?.attributionControl);
+  logoPosition = input<MapOptions['logoPosition']>(this.initialMapOptions?.logoPosition);
+  maxTileCacheSize = input<MapOptions['maxTileCacheSize']>(this.initialMapOptions?.maxTileCacheSize);
+  localIdeographFontFamily = input<MapOptions['localIdeographFontFamily']>(this.initialMapOptions?.localIdeographFontFamily);
+  preserveDrawingBuffer = input<MapOptions['preserveDrawingBuffer']>(this.initialMapOptions?.preserveDrawingBuffer);
+  trackResize = input<MapOptions['trackResize']>(this.initialMapOptions?.trackResize);
+  transformRequest = input<MapOptions['transformRequest']>(this.initialMapOptions?.transformRequest);
+  bounds = input<MapOptions['bounds']>(this.initialMapOptions?.bounds); // Use fitBounds for dynamic input
+  antialias = input<MapOptions['antialias']>(this.initialMapOptions?.antialias);
+  locale = input<MapOptions['locale']>(this.initialMapOptions?.locale);
+  cooperativeGestures = input<MapOptions['cooperativeGestures']>(this.initialMapOptions?.cooperativeGestures);
 
   /* Dynamic inputs */
-  minZoom = input<MapOptions['minZoom']>();
-  maxZoom = input<MapOptions['maxZoom']>();
-  minPitch = input<MapOptions['minPitch']>();
-  maxPitch = input<MapOptions['maxPitch']>();
-  scrollZoom = input<MapOptions['scrollZoom']>();
-  dragRotate = input<MapOptions['dragRotate']>();
-  touchPitch = input<MapOptions['touchPitch']>();
-  touchZoomRotate = input<MapOptions['touchZoomRotate']>();
-  doubleClickZoom = input<MapOptions['doubleClickZoom']>();
-  keyboard = input<MapOptions['keyboard']>();
-  dragPan = input<MapOptions['dragPan']>();
-  boxZoom = input<MapOptions['boxZoom']>();
-  style = input<MapOptions['style']>();
-  center = input<MapOptions['center']>();
-  maxBounds = input<MapOptions['maxBounds']>();
-  zoom = input<[number]>();
-  bearing = input<[number]>();
-  pitch = input<[number]>();
+  minZoom = input<MapOptions['minZoom']>(this.initialMapOptions?.minZoom);
+  maxZoom = input<MapOptions['maxZoom']>(this.initialMapOptions?.maxZoom);
+  minPitch = input<MapOptions['minPitch']>(this.initialMapOptions?.minPitch);
+  maxPitch = input<MapOptions['maxPitch']>(this.initialMapOptions?.maxPitch);
+  scrollZoom = input<MapOptions['scrollZoom']>(this.initialMapOptions?.scrollZoom);
+  dragRotate = input<MapOptions['dragRotate']>(this.initialMapOptions?.dragRotate);
+  touchPitch = input<MapOptions['touchPitch']>(this.initialMapOptions?.touchPitch);
+  touchZoomRotate = input<MapOptions['touchZoomRotate']>(this.initialMapOptions?.touchZoomRotate);
+  doubleClickZoom = input<MapOptions['doubleClickZoom']>(this.initialMapOptions?.doubleClickZoom);
+  keyboard = input<MapOptions['keyboard']>(this.initialMapOptions?.keyboard);
+  dragPan = input<MapOptions['dragPan']>(this.initialMapOptions?.dragPan);
+  boxZoom = input<MapOptions['boxZoom']>(this.initialMapOptions?.boxZoom);
+  style = input<MapOptions['style']>(this.initialMapOptions?.style);
+  center = input<MapOptions['center']>(this.initialMapOptions?.center);
+  maxBounds = input<MapOptions['maxBounds']>(this.initialMapOptions?.maxBounds);
+  zoom = input<[number] | undefined>(this.initialMapOptions?.zoom != null ? [this.initialMapOptions.zoom] : undefined);
+  bearing = input<[number] | undefined>(this.initialMapOptions?.bearing != null ? [this.initialMapOptions.bearing] : undefined);
+  pitch = input<[number] | undefined>(this.initialMapOptions?.pitch != null ? [this.initialMapOptions.pitch] : undefined);
   // First value goes to options.fitBoundsOptions. Subsequents changes are passed to fitBounds
-  fitBoundsOptions = input<MapOptions['fitBoundsOptions']>();
-  renderWorldCopies = input<MapOptions['renderWorldCopies']>();
-  projection = input<MapOptions['projection']>();
+  fitBoundsOptions = input<MapOptions['fitBoundsOptions']>(this.initialMapOptions?.fitBoundsOptions);
+  renderWorldCopies = input<MapOptions['renderWorldCopies']>(this.initialMapOptions?.renderWorldCopies);
+  projection = input<MapOptions['projection']>(this.initialMapOptions?.projection);
   /* Added by ngx-mapbox-gl */
   movingMethod = input<'jumpTo' | 'easeTo' | 'flyTo'>('flyTo');
   movingOptions = input<MovingOptions>();
